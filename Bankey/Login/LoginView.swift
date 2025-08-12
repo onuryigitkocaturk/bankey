@@ -12,7 +12,7 @@ class LoginView: UIView {
     
     let stackView = UIStackView()
     let usernameTextField = UITextField()
-    let passwordTextFİeld = UITextField()
+    let passwordTextField = UITextField()
     let dividerView = UIView()
     
     
@@ -44,10 +44,10 @@ extension LoginView{
         usernameTextField.placeholder = "Username"
         usernameTextField.delegate = self
         
-        passwordTextFİeld.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextFİeld.placeholder = "Password"
-        passwordTextFİeld.isSecureTextEntry = true
-        passwordTextFİeld.delegate = self
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.placeholder = "Password"
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.delegate = self
         
         dividerView.translatesAutoresizingMaskIntoConstraints = false
         dividerView.backgroundColor = .secondarySystemFill
@@ -59,7 +59,7 @@ extension LoginView{
     func layout(){
         stackView.addArrangedSubview(usernameTextField)
         stackView.addArrangedSubview(dividerView)
-        stackView.addArrangedSubview(passwordTextFİeld)
+        stackView.addArrangedSubview(passwordTextField)
         
         addSubview(stackView)
       
@@ -79,16 +79,12 @@ extension LoginView: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         usernameTextField.endEditing(true)
-        passwordTextFİeld.endEditing(true)
+        passwordTextField.endEditing(true)
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != ""{
-            return true
-        }else{
-            return false
-        }
+      return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
