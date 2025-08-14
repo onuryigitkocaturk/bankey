@@ -4,7 +4,6 @@
 //
 //  Created by Onur Yiğit Kocatürk on 8.08.2025.
 //
-
 import UIKit
 
 class LoginViewController: UIViewController {
