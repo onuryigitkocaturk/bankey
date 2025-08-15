@@ -37,12 +37,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: LoginViewControllerDelegate{
     func didLogin() {
-        setRootViewController(onboardingContainerViewController)
+        if LocalState.hasOnboarded {
+            setRootViewController(dummyViewController)
+        } else {
+            setRootViewController(onboardingContainerViewController)
+        }
     }
 }
 
 extension AppDelegate: OnboardingContainerViewControllerDelegate{
     func didFinishOnboarding() {
+        LocalState.hasOnboarded  = true
         setRootViewController(dummyViewController)
     }
 }
@@ -66,3 +71,6 @@ extension AppDelegate: LogoutDelegate {
         setRootViewController(loginViewController)
     }
 }
+
+
+
