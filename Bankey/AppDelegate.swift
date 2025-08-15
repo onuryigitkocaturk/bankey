@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let loginViewController = LoginViewController()
     let onboardingContainerViewController = OnboardingContainerViewController()
+    let dummyViewController = DummyViewController()
     
     
     func application(_ application: UIApplication,
@@ -25,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         loginViewController.delegate = self
         onboardingContainerViewController.delegate = self
+        dummyViewController.logoutDelegate = self
         window?.rootViewController = loginViewController
         // window?.rootViewController = LoginViewController()
         // window?.rootViewController = OnboardingViewController(heroImageName: "delorean", titleText: "Bankey is faster falan filan dalgası.")
@@ -41,7 +43,7 @@ extension AppDelegate: LoginViewControllerDelegate{
 
 extension AppDelegate: OnboardingContainerViewControllerDelegate{
     func didFinishOnboarding() {
-        print("Did onboard")
+        setRootViewController(dummyViewController)
     }
 }
 
@@ -56,5 +58,11 @@ extension AppDelegate {
         window.rootViewController = vc
         window.makeKeyAndVisible()
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
+    }
+}
+
+extension AppDelegate: LogoutDelegate {
+    func didLogout() {
+        setRootViewController(loginViewController)
     }
 }
